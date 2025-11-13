@@ -218,11 +218,11 @@
         <h2 id="what-information">What Information We Collect</h2>
         <p><strong>Short answer:</strong> We do not collect or transmit personal information by default.</p>
         <ul>
-            <li>All task data (titles, descriptions, due dates/times, priorities, tags, and subtasks) is stored locally on your device only.</li>
-            <li>The app does not send your tasks or personal information to our servers or to any third parties unless you explicitly enable and authorize an optional cloud backup/sync feature (for example, Google Drive). If you enable Google Drive sync, the app will request permission via OAuth and may access your Drive to create and manage a backup file. We only access the files and metadata necessary to manage backups.</li>
-            <li>We do not collect analytics, device identifiers, or usage telemetry by default.</li>
+            <li>All task data (titles, descriptions, due dates/times, priorities, tags, and subtasks) is stored locally on your device only. The developer does not collect or store your tasks.</li>
+            <li>The app does not send your tasks or personal information to our servers or to any third parties unless you explicitly enable and authorize an optional cloud backup/sync feature (for example, Google Drive). If you enable Google Drive sync, the app will request permission via OAuth and will create and manage an encrypted backup file in your Drive. We only access the files and metadata necessary to manage those backups; we do not collect task content or user emails for our own use.</li>
+            <li>We do not collect analytics, device identifiers, usage telemetry, email addresses, or other personal information by default.</li>
         </ul>
-        <p>If you enable Google Sign-In (optional), we may request access to basic profile information (such as your email address) to associate backups with your account; this is optional and requested only with your consent.</p>
+        <p><strong>Note:</strong> Google Sign-In is used only to obtain user consent and an OAuth token to access the user's own Google Drive for backup purposes. The app does not collect or store your email address or profile information for developer use.</p>
         <p>If you believe any behavior contradicts this policy, please contact us at <a href="mailto:isslamkais40@gmail.com">isslamkais40@gmail.com</a>.</p>
 
         <h2 id="how-collect">How We Collect Information</h2>
@@ -257,9 +257,9 @@
         <h3>Local Storage</h3>
         <p>By default, all your task data is stored locally on your device using:</p>
         <ul>
-            <li><strong>Encrypted Storage:</strong> We use platform-provided secure storage mechanisms</li>
-            <li><strong>SQLite Database:</strong> Task data is stored in an encrypted local database</li>
-            <li><strong>Secure Key Storage:</strong> Authentication credentials are stored using platform keychain/keystore</li>
+            <li><strong>Encrypted Storage:</strong> Task data is encrypted at rest (AES-256) in the local database.</li>
+            <li><strong>Encrypted Database:</strong> Tasks are stored in an encrypted local database (Hive with encryption keys).</li>
+            <li><strong>Secure Key Storage:</strong> Encryption keys are stored using platform secure storage (Keychain/KeyStore) via <code>flutter_secure_storage</code>. On Web builds, keys are stored in <code>SharedPreferences</code> (documented limitation).</li>
         </ul>
 
         <h3>Cloud Storage (Optional)</h3>
@@ -275,11 +275,11 @@
         <h3>Security Measures</h3>
         <p>We implement security measures including:</p>
         <ul>
-            <li>Encryption of sensitive data at rest and in transit</li>
-            <li>Secure authentication mechanisms</li>
-            <li>Regular security updates and patches</li>
-            <li>Access controls and monitoring</li>
-            <li>Compliance with mobile platform security guidelines</li>
+            <li>Encryption of sensitive data at rest (AES-256) and in transit (HTTPS/TLS).</li>
+            <li>OAuth-based access for Google Drive; the app only receives an OAuth token for your account when you explicitly sign in.</li>
+            <li>Encryption keys stored in platform secure storage via <code>flutter_secure_storage</code> on mobile; Web uses <code>SharedPreferences</code> (less secure).</li>
+            <li>Regular dependency and security updates.</li>
+            <li>Minimal data collection: by default the app does not collect analytics, crash reports, or emails.</li>
         </ul>
         <p><strong>Important:</strong> While we implement robust security measures, no method of electronic storage is 100% secure. We cannot guarantee absolute security.</p>
 
@@ -309,8 +309,8 @@
         <ul>
             <li><code>https://www.googleapis.com/auth/drive.file</code> — The app requests this scope to create and manage backup files that the app creates in your Google Drive. This is the only Drive-related OAuth scope requested by the app for backup/sync.</li>
         </ul>
-        <p><strong>Note on Google Sign-In:</strong> the app uses the Google Sign-In flow to obtain user consent for Drive access. No OpenID Connect scopes (such as <code>openid</code>, <code>email</code>, or <code>profile</code>) are explicitly requested by the app in code; only the Drive scope above is requested. The Google Sign-In plugin may return basic account information (email, display name) after a successful sign-in which the app uses to identify the backup owner.</p>
-        <p>These integrations operate with the cloud account you provide; the developer does not host or access your task data on our own servers. We will always ask for your consent before enabling any integration and will list the provider and required permissions in-app.</p>
+    <p><strong>Note on Google Sign-In:</strong> the app uses the Google Sign-In flow only to obtain an OAuth token for the Drive scope (<code>drive.file</code>) so the app can create and manage an encrypted backup file in your Drive. The app does not request or retain OpenID Connect scopes for developer use, and does not collect user email addresses for the developer's purposes.</p>
+    <p>These integrations operate with the cloud account you provide; the developer does not host, view, or access your task data on developer-controlled servers. We will always ask for your consent before enabling any integration and will list the provider and required permissions in-app.</p>
 
         <h2 id="data-rights">Your Data Rights</h2>
         <p>Depending on your location, you may have the following rights regarding your personal information:</p>
@@ -389,9 +389,9 @@
             <li>If you have concerns about international transfers by your chosen cloud provider, review that provider's privacy policy and terms and contact them for details about where and how they process data.</li>
         </ul>
 
-        <h2 id="cookies">Cookies and Tracking Technologies</h2>
-        <p>This is a native mobile app and does not use web cookies. We do not collect analytics or tracking data by default.</p>
-        <p>All task data and preferences are stored locally on your device. If we introduce analytics or tracking in the future, we will obtain your consent and update this Policy.</p>
+    <h2 id="cookies">Cookies and Tracking Technologies</h2>
+    <p>This is a native mobile app and does not use web cookies. We do not collect analytics, crash reports, or tracking data.</p>
+    <p>All task data and preferences are stored locally on your device. If we introduce analytics or tracking in the future, we will obtain your consent and update this Policy.</p>
 
         <h2 id="do-not-sell">Do Not Sell or Share My Information</h2>
         <p><strong>California Residents (CCPA/CPRA):</strong></p>

@@ -1,0 +1,71 @@
+GitHub Pages Setup Instructions for Privacy Policy
+===================================================
+
+STEP 1: Create a new GitHub repository (on GitHub website)
+-----------------------------------------------------------
+1. Go to: https://github.com/new
+2. Repository name: privacy-policy (or any name you prefer)
+3. Description: Privacy Policy for My Tasks Reminder
+4. Select: Public
+5. Do NOT initialize with README, .gitignore, or license
+6. Click "Create repository"
+
+STEP 2: Note your repository URL
+---------------------------------
+After creating the repo, GitHub will show you a URL like:
+https://github.com/YOUR_USERNAME/privacy-policy.git
+
+Copy this URL - you'll need it for the next step.
+
+STEP 3: Push the local files to GitHub
+---------------------------------------
+Run these commands in PowerShell (already in D:\Tasks\my_tasks_reminder\privacy-site):
+
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/privacy-policy.git
+git push -u origin main
+
+(Replace YOUR_USERNAME with your actual GitHub username in the URL)
+
+STEP 4: Enable GitHub Pages
+----------------------------
+1. Go to your repository on GitHub: https://github.com/YOUR_USERNAME/privacy-policy
+2. Click "Settings" (top menu)
+3. Scroll down to "Pages" (left sidebar)
+4. Under "Source", select:
+   - Branch: main
+   - Folder: / (root)
+5. Click "Save"
+6. Wait 1-2 minutes for deployment
+
+STEP 5: Access your hosted privacy policy
+------------------------------------------
+Your privacy policy will be available at:
+https://YOUR_USERNAME.github.io/privacy-policy/privacy_policy.html
+
+Use this URL to:
+- Embed in your Google Site
+- Link from Google Play Console
+- Share with users
+
+OPTIONAL: Rename the file to index.html
+----------------------------------------
+If you want a shorter URL (https://YOUR_USERNAME.github.io/privacy-policy/), 
+rename the file to index.html:
+
+In PowerShell:
+cd D:\Tasks\my_tasks_reminder\privacy-site
+git mv privacy_policy.html index.html
+git commit -m "Rename to index.html for shorter URL"
+git push
+
+Then your URL becomes: https://YOUR_USERNAME.github.io/privacy-policy/
+
+===================================================
+Current Status:
+✓ Local git repository initialized
+✓ privacy_policy.html committed
+✓ Git user configured (isslamkais40@gmail.com)
+
+Next: Create the GitHub repo and run the commands in STEP 3 above.
+===================================================
